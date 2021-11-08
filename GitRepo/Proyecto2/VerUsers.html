@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST GENERAL</title>
+    <link rel="stylesheet" href="estilousers.css">
+  </head>
+  <body onload="obtnerVideOImagen()" style="background-image: url(imagenes/post.jpg);">
+       <h1> UBLOG </h1>
+       <div class = "galeria2">
+         <div class = "imagen" id = "detalles3">
+             
+           </div>
+            </div> 
+
+       <div class = "galeria">
+        <div class = "video" id = "detalles2">
+             <img src="" alt="">
+           </div>
+           </div>
+         
+ <button onclick="Return()" type="button"  >Regresar</button>
+   
+
+   <script>
+   function Return(){
+     location.href = "Index.html"
+   }
+
+  function obtnerVideOImagen(){
+     var tabla = document.querySelector('#detalles2')
+     var cadena1 = ''
+
+ 
+     fetch('http://localhost:3000/Video', {
+     method: 'GET',
+     headers:{
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': '*',}})
+
+     .then(res => res.json())
+     .catch(err => {
+         console.error('Error:', err)
+         alert("Ocurrio un error, ver la consola")
+      })
+
+     .then(response =>{
+            
+         console.log(response);
+             response.forEach(element => {
+               if(element.author == element.author){
+               cadena1 +=`<tr>
+                       <iframe width="560" height="315" src="${element.url}" 
+                       <source src="${element.url}" type="video/webm">
+                       <source src="${element.url}" type="video/ogg">
+                       <source src="${element.url}" type="video/mp4">  title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                       <td><button value="${element.url}" id="btn"  type="button" onclick ="like()" class="btn btn-outline-dark" style=" left: 2px;">Like</button></td>
+                         <td><input value="${"autor :"+element.author+"   " +"fecha :"+element.date+"   " +"Categoria :"+element.category}" type="text" name="" placeholder="", id="password" style=" right: -10px; width: 340px;" disabled></td>
+                        </tr>`  
+
+                        }
+                });
+                 tabla.innerHTML = cadena1
+     })
+
+   var tabla2= document.querySelector('#detalles3')
+    var cadena1= ''
+
+     fetch('http://localhost:3000/Imagen', {
+     method: 'GET',
+     headers:{
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': '*',}})
+
+     .then(res => res.json())
+     .catch(err => {
+         console.error('Error:', err)
+         alert("Ocurrio un error, ver la consola")
+      })
+
+     .then(response =>{
+            
+         console.log(response);
+         response.forEach(element => {
+          cadena1 +=`<tr>
+                     <img width="560" height="315" src="${element.url}" title=" ${"Tipo:" + "imagen"}   ${"fecha:" + element.date}   ${"Categoria:" + element.category} ">
+                      <td><button value=${element.url} style="left: 400px;" id="btn" type="button" onclick = "like()"class="btn btn-outline-dark">Like</button></td>
+                      <td><input value=${"autor:"+ element.author} type="text" name="" placeholder="", id="pass" disabled></td>
+                     </tr>`  
+          });
+           tabla.innerHTML = cadena1
+          
+     })
+
+
+ 
+
+}
+
+
+ var btn = document.getElementById('btn')
+ var megusta = document.getElementById('megusta')
+     var contardor = 0;
+function like(){
+    
+
+    if(contardor == 0){
+        megusta.classList.add('1')
+        contardor=1;
+    }else{ 
+        megusta.classList.remove('0')
+        contardor=0;
+
+    }
+   
+
+       
+        
+
+  }
+
+    btn.addEventListener('click',like,true)
+
+    
+   
+   </script>
+
+<script src="like.js"></script>
+
+  </body>
+  </html>

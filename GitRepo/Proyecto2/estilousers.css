@@ -1,0 +1,40 @@
+h1{
+    color: rgb(0, 0, 0);
+    text-shadow: 1px 2px 2px black, 0 0 25px rgb(216, 45, 216), 0 0 5px blue;
+    text-align: center;
+
+}
+div.galeria{
+    width: 100%;
+    padding: 20px 20px;
+    box-shadow: 0 4px 8px 0 rgb(99, 8, 245), 0 6px 20px 0 rgba(109, 238, 3, 0.19);
+    position: relative;
+    border-radius: 20px;
+    left: 300px;
+    width: 550px;
+}
+button{
+    top: -5px;
+    position: relative;
+    left: 20px;
+    width: 110px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: darkmagenta;
+}
+div.galeria2{
+    box-shadow: 0 4px 8px 0 lightgray, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    width: 300px;
+    left: 200px;
+    top: -500px;
+}
+div.galeria2 imagen{
+    width: 100%;
+    height: auto;
+}
+
+div.galeria video{
+    width: 100%;
+    height: auto;
+}

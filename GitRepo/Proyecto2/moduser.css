@@ -1,0 +1,77 @@
+
+
+body {
+    background-image: url(imagenes/post.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+form {
+	width: 500px;
+	height: 100px;
+	margin: 100px auto 0;
+	position: relative;
+}
+
+/* Ok, HTML markup is complete */
+/* submit button will also be the same but with a different color. We'll style the label and the submit input */
+/* a faky 3D look */
+
+form h2{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+ form input {
+	width: 500px;
+	height: 40px;
+	background: #b0d6a8;
+	display: block;
+	position: absolute;
+	top: 100px;
+	right: 0;
+	box-shadow:
+		0px 5px #91a8c5,
+		0px 8px 10px rgba(241, 69, 7, 0.5);
+}
+
+.contenedor__login-register form input{
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background: #F2F2F2;
+    font-size: 16px;
+    outline: none;
+}
+.contenedor__login-register form button{
+    padding: 10px 40px;
+    position: absolute;
+    border: none;
+    font-size: 14px;
+    right: -200px;
+    background: #bed10d;
+    font-weight: 600;
+    cursor: pointer;
+     top: 220px;
+   
+}
+
+ .contenedor select{
+    padding: 10px 40px;
+    position: absolute;
+    font-size: 20px;
+    top: 300px;
+    right: 1150px;
+    margin-bottom: 20px;
+    background-color: rgb(33, 230, 122);
+}
+
+
+
+
+

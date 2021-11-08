@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Perfil</title>
+  </head>
+  <body onload="cargars()">
+    <h1> UBLOG PERFIL  </h1> 
+    <br>
+    <br>
+     <button onclick="salir2()" type="button" style="width: 20%; position: relative; left: 600px; top: -50px;">Salir</button>
+    <br>
+     <div style="width: 80%; padding-right: 25px; float: left;">
+        <table class="table">
+            <thead  class="table-light" >
+            <h2> Videos  </h2> 
+                <tr>
+                    <th> URL   </th>
+                    <th>  Autor </th>
+                    <th> fecha </th>
+                    <th> Categoria</th>
+  
+                </tr>
+            </thead>
+            <tbody id="detallesss">
+            </tbody>
+        </table>
+    </div>
+
+     <div style="width: 80%; padding-right: 25px; float: left;">
+        <table class="table">
+            <thead  class="table-light" >
+             <h2> Imagenes </h2> 
+                <tr>
+                    <th>  URL   </th>
+                    <th>  Autor </th>
+                    <th> fecha </th>
+                    <th> Categoria</th>
+  
+                </tr>
+            </thead>
+            <tbody id="detalless1">
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+ 
+ <script>
+
+ function cargars(){
+     
+     ObtenerC();
+     obtenerD();
+ }
+ function ObtenerC(){
+             var usuarios = sessionStorage.Post
+             var cadena=''
+    
+
+            fetch(`http://localhost:3000/Video/${usuarios}`, {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',}})
+            .then(res => res.json())
+            .catch(err => {
+                console.error('Error:', err)
+                alert("Ocurrio un error, ver la consola")
+            })
+            .then(response =>{
+                console.log(response);
+                 response.forEach(element => {
+                cadena+=`<tr>
+                <td>  <iframe width="350" height="250" src="${element.url}" 
+                       <source src="${element.url}" type="video/webm">
+                       <source src="${element.url}" type="video/ogg">
+                       <source src="${element.url}" type="video/mp4">  title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+                <td>${element.author}</td>
+                <td>${element.date}</td>
+                <td>${element.category}</td>
+                </tr>`  
+               
+                 });
+                    document.querySelector('#detallesss').innerHTML  = cadena
+            })
+            
+        }
+    function obtenerD(){
+
+            var usuarios = sessionStorage.Post
+            var cadena2= ''
+
+            fetch(`http://localhost:3000/Imagen/${usuarios}`, {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',}})
+            .then(res => res.json())
+            .catch(err => {
+                console.error('Error:', err)
+                alert("Ocurrio un error, ver la consola")
+            })
+            .then(response =>{
+                console.log(response);
+                 response.forEach(element => {
+                cadena2 +=`<tr>
+                     <td><img width="350" height="250" src="${element.url}" ></td>
+                      <td>${element.author}</td>
+                      <td>${element.date}</td>
+                      <td>${element.category}</td>
+                     
+                     </tr>`  
+               
+                 });
+                    document.querySelector('#detalless1').innerHTML = cadena2
+            })
+        }
+        function salir2(){
+            location.href = "UsersInicial.html"
+        }
+  </script>
+  </body>
+</html>

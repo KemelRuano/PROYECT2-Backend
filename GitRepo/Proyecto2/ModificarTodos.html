@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang = "en" dir="ltr">
+<head>
+<meta charset = "utf-8">
+<title> Datos </title>
+
+<link rel="stylesheet" href="actu.css">
+</head>
+<body>
+                 <div class="contenedor__login-register">
+                   <form action="" class="formulario__register" methods = ['POST']>
+                       <h2>Modificar Datos de Usuarios</h2>
+                       <input type="text" name="" placeholder="Ingrese Nombre Completo" , id="nombre">  
+                       <br>
+                         <br>
+                       <h3>Genero</h3>
+                        <br>
+                        <label> <input type="radio" id="genero1" name="nombreradio" value="M">    Masculino </label>
+            
+                        <label><input type="radio" id="genero2" name="nombreradio" value="F">    Femenino </label>
+                        <input type="text" name="" placeholder="Ingrese Nombre De Usuario", id="nombreus">
+                        <input type="text" name="" placeholder="Ingrese Su Contraseña",  id="contraseña">
+                       
+                       <input type="text" name="" placeholder="Ingrese Su Correo", id="correo">                
+                        <button onclick="ActualizarTodos()" type="button">Actualizar</button>
+                          <button onclick="retro()" type="button">Regresar</button>
+                    </form>
+                    </div>
+
+    <script>
+
+    function ActualizarTodos(){
+
+                var nombre = document.querySelector('#nombre').value
+                var genero;
+                if(document.getElementById('genero1').checked){
+                    genero = document.getElementById('genero1').value
+
+                }else if(document.getElementById('genero2').checked){
+                    genero = document.getElementById('genero2').value
+                }
+                var nombreus = document.querySelector('#nombreus').value
+                var correo = document.querySelector('#correo').value
+                var contraseña = document.querySelector('#contraseña').value
+
+                 var objeto2 ={
+
+                    'name': nombre,
+                    'gender':genero,
+                    'username':nombreus,
+                    'email': correo,
+                    'password': contraseña
+                    
+                }
+                console.log(objeto2)  
+
+
+
+
+
+                fetch(`http://localhost:3000/Listado/${nombre}`, {
+                method: 'PUT',
+                body: JSON.stringify(objeto2),
+                headers:{
+                      'Content-Type': 'application/json',
+                      'Access-Control-Allow-Origin': '*',}})
+
+                .then(res => res.json())
+                .catch(err => {
+                       console.error('Error:', err)
+                       alert("Ocurrio un error, ver la consola")
+                })
+
+                .then(response =>{
+                        console.log(response);
+                        alert(response.Mensaje)
+
+                })
+
+    }
+      
+ 
+
+        function retro(){
+            location.href = "ModAdmin.html"
+        }
+    </script>
+
+
+</body>
+</html>

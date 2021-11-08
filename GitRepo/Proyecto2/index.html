@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Inicio Ublog</title>
+	<link rel="stylesheet" href="estilos.css">
+	<link rel="stylesheet" href="font-awesome.css">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="main.js"></script>
+</head>
+<body>
+  <h1 style = "color: rgb(0, 0, 0);
+    text-shadow: 1px 2px 2px black, 0 0 25px rgb(216, 45, 216), 0 0 5px blue;
+    text-align: center;"> UBLOG </h1>
+	<div class="wrap">
+		<ul class="tabs">
+			<li><a href="#tab1"><span class="fa fa-home"></span><span class="tab-text">Inicio</span></a></li>
+			<li><a href="#tab2"><span class="fa fa-group"></span><span class="tab-text" onclick =" ver()">Publicaciones</span></a></li>
+			<li><a href="#tab3"><span class="fa fa-briefcase"></span><span class="tab-text">Mision y Vision</span></a></li>
+			<li><a href="#tab4"><span class="fa fa-briefcase"></span><span class="tab-text">informacion de desarrollador</span></a></li>
+			<li ><a href="#tab4"><span class="fa fa-bookmark"></span><span onclick = "LOG()" class="tab-text">Iniciar Sesion</span></a></li>
+		</ul>
+
+		<div class="secciones">
+			<article id="tab1">
+			<h1>Quienes somos?</h1>
+				<p style="font-size: 30px;">Actualmente somos una empresa que se dedica a al manejo de informacion de personas por medio de nuestra red social UBLOG nuestros servidores cuentas con lo último en tecnología. </p>
+				
+			</article>
+			<article id="tab2">
+
+				
+			</article>
+			<article id="tab3">
+				<h1 style="font-size: 30px;">Mision</h1>
+				<p style="font-size: 20px;">proveer las mejores opciones de la tecnología mas actualizada y competitivos sin olvidar el buen servicio</p><br>
+				<h1 style="font-size: 30px;">Vision</h1>
+				<p style="font-size: 20px;">Las personas utilizan UBLOG para estar en contacto con amigos y familia, para descubrir qué ocurre en el mundo y para compartir y expresar las cosas que les importan.</p>
+			</article>
+			<article id="tab4">
+				<h1 style="font-size: 30px;">Informacion personal</h1>
+				<p style="font-size: 20px;">  Nombre:  kemel Josue Efrain Ruano Jeronimo</p><br> 
+				 <p style="font-size: 20px;"> Nacimiento:19/04/200 </p><br>
+					 <p style="font-size: 20px;"> Numero: + 502  45568425</p><br>
+				
+			</article>
+		</div>
+	</div>
+
+	<script>
+	function LOG(){
+		location.href = "login.html"
+	}
+	function ver(){
+        location.href = "VerUsers.html"
+    }
+
+	</script>
+</body>
+</html>

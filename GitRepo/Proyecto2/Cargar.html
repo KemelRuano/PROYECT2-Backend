@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Cargar</title>
+  </head>
+  <body>
+
+
+  <form  method="POST" enctype="multipart/form-data" style="width: 35%; position: relative; left: 50px;  background: #06bdeb; color: black; top: 75px;">
+   <h1> Cargar Usuarios</h1>
+   <label for="formFileSm" class="form-label">Seleccionar Usuarios</label>
+    <input type="file" id="file-input" />
+    <br>
+      <br>
+
+</form>
+
+
+
+    <div class="mb-3" style="width: 40%; position: relative; left: 750px;  background: #06bdeb; color: black;">
+    <h1> Cargar Post</h1>
+  <label for="formFileSm" class="form-label">Seleccionar Post</label>
+  <input class="form-control form-control-lg" id="formFileLg2" type="file" style=" width: 90%;"/>
+    <br>
+     <br>
+      <br>
+   
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+ <button type="button"  onclick = "regres()"class="btn btn-outline-dark"  style="padding: 10px 40px; position: relative; left: 200px;">Regresar</button>
+
+<script>
+function CargarUsuarios(e) {
+  var archivo = e.target.files[0];
+  if (!archivo) {
+    return;
+  }
+  var leendo = new FileReader();
+  leendo.onload = function(e) {
+    var creadojson = e.target.result;
+    var objeto = {
+      'CargarUs': creadojson
+    }
+
+       console.log(objeto)
+
+            fetch('http://localhost:3000/CargarUsuarios', {
+            method: 'POST',
+            body: JSON.stringify(objeto),
+            headers:{
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',}})
+
+            .then(res => res.json())
+            .catch(err => {
+                console.error('Error:', err)
+                alert("Ocurrio un error, ver la consola")
+            })
+
+            .then(response =>{
+                console.log(response);
+                alert(response.Mensaje)
+
+            })
+  };
+ leendo.readAsText(archivo);
+}
+  document.getElementById('file-input')
+  .addEventListener('change', CargarUsuarios, false);
+
+</script>
+
+<script>
+function CargarPOSTSS(e) {
+  var archivopost = e.target.files[0];
+  if (!archivopost ) {
+    return;
+  }
+  var leendopost = new FileReader();
+  leendopost.onload = function(e) {
+    var creadojson2 = e.target.result;
+    var objeto2 = {
+      'CargarPOST': creadojson2
+    }
+
+       console.log(objeto2)
+
+            fetch('http://localhost:3000/CargarPost', {
+            method: 'POST',
+            body: JSON.stringify(objeto2),
+            headers:{
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',}})
+
+            .then(res => res.json())
+            .catch(err => {
+                console.error('Error:', err)
+                alert("Ocurrio un error, ver la consola")
+            })
+
+            .then(response =>{
+                console.log(response);
+                alert(response.Mensaje)
+
+            })
+  };
+ leendopost.readAsText(archivopost);
+}
+  document.getElementById('formFileLg2')
+  .addEventListener('change', CargarPOSTSS, false);
+
+
+
+
+function regres(){
+  location.href ="ModAdmin.html"
+              
+}
+
+
+</script>
+
+
+
+  </body>
+</html>

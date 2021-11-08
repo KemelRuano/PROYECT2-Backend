@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang = "en" dir="ltr">
+<head>
+<meta charset = "utf-8">
+<title> INICIAR SESION </title>
+
+<link rel="stylesheet" href="logindise.css">
+</head>
+<body>
+
+
+
+
+<main>
+
+            <div class="contenedor__todo">
+                <div class="caja__trasera">
+                    <div class="caja__trasera-login">
+                        <p>Inicia sesión para entrar en la página</p>
+                        <button id="btn__iniciar-sesion">INICIAR SESION</button>
+                    </div>
+                    <div class="caja__trasera-register">
+                        <h3>¿Aún no tienes una cuenta?</h3>
+                        <p>Registrarte para iniciar sesión</p>
+                        <button id="btn__registrarse">Regístrarse</button>
+                    </div>
+                </div>
+
+                <!--Formulario de Login y registro-->
+                <div class="contenedor__login-register">
+                    <!--Login-->
+                    <form action="" class="formulario__login" methods=['POST']>
+                        <h2>INICIO DE SESION</h2>
+                        <input type="text" name="" placeholder="Ingrese Su Usuario" , id="nombrelogin">
+                        <input class="form-control" placeholder="Ingrese Su Contraseña" type="password" name="password" id="passlogin">
+                        <button class="btn btn-primary" type="button" onclick="mostrarContrasena()">👁️Contraseña</button>
+                        <button onclick="Login()" type="button">INICIAR SESION</button>
+                        
+                       </form>
+
+                       <script>
+
+                       </script>
+
+                    <!--Register-->
+                  <form action="" class="formulario__register" methods = ['POST']>
+                       <h2>REGISTRO</h2>
+                       <input type="text" name="" placeholder="Ingrese Nombre Completo" , id="nombre">  
+                       <br>
+                         <br>
+                       <h3>Genero</h3>
+                        <br>
+                        <label> <input type="radio" id="genero1" name="nombreradio" value="M">    Masculino </label>
+            
+                        <label><input type="radio" id="genero2" name="nombreradio" value="F">    Femenino </label>
+                        <input type="text" name="" placeholder="Ingrese Nombre De Usuario", id="nombreus">
+                        <input type="text" name="" placeholder="Ingrese Su Contraseña", id="password">
+                              
+                       
+                       <input type="text" name="" placeholder="Ingrese Su Correo", id="correo">                
+                        <button onclick="Registrar()" type="button">Regístrarse</button>
+                    </form>
+                       
+                  
+                </div>
+            </div>
+            <button onclick="Re()" type="button">Ir a Menu Principal</button>
+
+        </main>
+        
+         <script>
+            function Registrar(){
+
+                var nombre = document.querySelector('#nombre').value
+                var genero;
+                if(document.getElementById('genero1').checked){
+                    genero = document.getElementById('genero1').value
+
+                }else if(document.getElementById('genero2').checked){
+                    genero = document.getElementById('genero2').value
+                }
+                var nombreus = document.querySelector('#nombreus').value
+                var correo = document.querySelector('#correo').value
+                var contraseña = document.querySelector('#password').value
+                
+                
+                var objeto ={
+                    'name': nombre,
+                    'gender':genero,
+                    'username':nombreus,
+                    'email': correo,
+                    'password': contraseña
+                    
+                }
+                console.log(objeto)
+
+            fetch('http://localhost:3000/Listado', {
+            method: 'POST',
+            body: JSON.stringify(objeto),
+            headers:{
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',}})
+
+            .then(res => res.json())
+            .catch(err => {
+                console.error('Error:', err)
+                alert("Ocurrio un error, ver la consola")
+            })
+
+            .then(response =>{
+                console.log(response);
+                if(response.Mensaje){
+                     alert(response.Mensaje)
+             
+                     
+                 }else if(response.Mensaje1){
+                      alert(response.Mensaje1)
+                 
+
+
+                 }
+
+            })
+            }
+
+
+            function Login(){
+
+            var nombreus1 = document.querySelector('#nombrelogin').value
+            var contraseña1 = document.querySelector('#passlogin').value
+
+
+
+             var objeto1 ={
+                    'username':nombreus1,
+                    'password': contraseña1
+                    
+                }
+              console.log(objeto1)
+                
+            fetch('http://localhost:3000/Listado1', {
+            method: 'POST',
+             body: JSON.stringify(objeto1),
+            headers:{
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',}})
+
+            .then(res => res.json())
+            .catch(err => {
+                console.error('Error:', err)
+                alert("Ocurrio un error, ver la consola")
+            })
+
+            .then(response =>{
+            
+                console.log(response);
+
+
+                 if(response.Mensaje1){
+
+                     alert(response.Mensaje1)
+                     location.href = "ModAdmin.html";
+                     
+                 }else if(response.Mensaje2){
+                      alert(response.Mensaje2)
+
+                          Inicio();
+
+
+                 }else if(response.Mensaje){
+                      alert(response.Mensaje)
+                 }
+
+               
+            })
+
+                 
+
+            }
+
+            function Inicio(){
+
+            var usuario = document.querySelector('#nombreus').value
+            var usuario2 = document.querySelector('#nombrelogin').value
+
+            if(usuario == usuario){
+
+                sessionStorage.setItem("buscar", usuario2)
+                location.href = "UsersInicial.html";
+
+            }
+            
+        }
+
+           function Re(){
+               location.href = "index.html";
+           }
+          
+            </script>
+            <script>
+                function mostrarContrasena(){
+                var tipo = document.getElementById("passlogin");
+                if(tipo.type == "password"){
+                 tipo.type = "text";
+                  }else{
+                  tipo.type = "password";
+                  }
+                 }
+</script>
+
+
+        <script src="out.js"></script>
+
+</body>
+</html>

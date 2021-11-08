@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Inicio Usuario</title>
+<meta charset="utf-8" />
+<meta name="description" content="Debe contener las palabras clave, tratar de atraer clicks y de longitud entre 150 y 160 caracteres">
+<link rel="stylesheet" href="UserInici.css" />
+<link rel="shortcut icon" href="/favicon.ico" />
+</head>
+ 
+<body>
+  
+    <header>
+       <h1>Bienvenido!!!!!!!!!!!!!!!  </h1>
+       <p></p>
+       
+    </header>
+    <section>
+       <article>
+           <h2> Menu inicial Usuario</h2>
+       </article>
+           <br>
+           <button onclick=" ActDatos()" type="button">Actualizar Datos</button>
+            <br>
+            <br>
+                <button onclick=" PostData()" type="button">Realizar Post</button>
+           <br>
+           <br>
+                <button onclick="verperfil()" type="button">Ver perfil</button>
+                  <button onclick="salir()" type="button" style="width: 30%; position: relative; left: 400px;">Salir</button>
+    </section>
+
+
+
+    <script>
+    function ActDatos(){
+        location.href = "Actualizar.html"
+    }
+
+    function PostData(){
+        location.href = "ModUsers.html"
+    }
+    
+     function salir(){
+        location.href = "login.html"
+    }
+    function verperfil(){
+        location.href = "Perfil.html"
+    }
+    </script>
+
+
+</body>
+</html>
