@@ -247,18 +247,15 @@ def Elimina(nombre):
             return jsonify({'Mensaje':'El usuario admin no puede ser eliminado'}) 
         else:
          if nombre == Listado[i].getNombreUs():
-            del Listado[i]
-         return jsonify({'Mensaje':'Usuario eliminado'}) 
-    for x in range(len(Imagen)):
-        if nombre == Imagen[x].getAuthor():
-            del Imagen[x]
-    
-    for s in range(len(Video)):
-        if nombre == Video[s].getAuthor():
-            del Video[s]
-
-            return jsonify({'Mensaje':'Usuario eliminado'})      
-    return jsonify({'Mensaje':'El usuario no existe o lo escribio mal'})
+            del Listado[i]    
+         for x in range(len(Imagen)):
+            if nombre == Imagen[x].getAuthor():
+             del Imagen[x]
+         for s in range(len(Video)):
+           if nombre == Video[s].getAuthor():
+             del Video[s]
+               
+    return jsonify({'Mensaje':'Usuario eliminado'})
 
 
 
