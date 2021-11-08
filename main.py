@@ -1,10 +1,8 @@
-import abc
-from re import A
+
 from flask import Flask,jsonify,request,render_template
-import flask
-from flask.templating import render_template
+
 from flask_cors import CORS
-from werkzeug.utils import secure_filename
+
 from Usuarios import Users
 from Post import posts
 
